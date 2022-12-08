@@ -12,15 +12,17 @@ const listaDeAtividades = document.querySelector(".lista");
 
 btnSalvar.addEventListener("click", handleSalvar);
 
-definirData();
-
 function handleSalvar() {
-  let descricao = atividade.value;
+  let descricaoAtividade = atividade.value;
+
+  let dataAtividade = data.value ? data.value : definirDataAtual();
 
   let horarioAtividade = horario.value ? horario.value : definirhorarioAtual();
 
   let item = criarItem(
-    `${formatarData(data.value)} | ${horarioAtividade} | ${descricao}`
+    `${formatarData(
+      dataAtividade
+    )} | ${horarioAtividade} | ${descricaoAtividade}`
   );
 
   listaDeAtividades.appendChild(item);
@@ -36,7 +38,7 @@ function criarItem(conteudo) {
   return item;
 }
 
-function definirData() {
+function definirDataAtual() {
   let dataAtual = new Date();
 
   let dia = String(dataAtual.getDate()).padStart(2, "0");
